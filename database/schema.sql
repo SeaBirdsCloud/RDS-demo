@@ -11,7 +11,7 @@
         data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-    CREATE USER 'user-rds'@'localhost'
+    CREATE USER 'user-rds'@'%'
     IDENTIFIED BY 'P@ssw0rd';
-    GRANT ALL PRIVILEGES ON gerenciador_tarefas.* TO 'user-rds'@'localhost';
+    GRANT ALL PRIVILEGES ON gerenciador_tarefas.* TO 'user-rds'@'%';
     FLUSH PRIVILEGES;
