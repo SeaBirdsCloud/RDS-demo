@@ -92,7 +92,7 @@ def index():
 
         </body>
         </html>
-        """, 503
+        """
 
     busca = request.args.get("busca", "")
     status = request.args.get("status", "")
@@ -261,4 +261,4 @@ def excluir(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port="80", debug=True)
