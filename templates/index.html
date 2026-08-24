@@ -1,0 +1,174 @@
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h1 class="fw-bold">Minhas tarefas</h1>
+    <p class="text-muted">
+        Organize seu dia de forma simples.
+    </p>
+</div>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <small>Total</small>
+                <h2>{{ total }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <small>Pendentes</small>
+                <h2>{{ pendentes }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <small>Concluídas</small>
+                <h2>{{ concluidas }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<form class="row g-2 mb-4">
+
+    <div class="col-md-7">
+        <input
+            type="text"
+            name="busca"
+            class="form-control"
+            placeholder="Pesquisar tarefa..."
+            value="{{ busca }}"
+        >
+    </div>
+
+    <div class="col-md-3">
+        <select name="status" class="form-select">
+            <option value="">Todos os status</option>
+            <option value="pendente"
+                {% if status == "pendente" %}selected{% endif %}>
+                Pendentes
+            </option>
+            <option value="concluida"
+                {% if status == "concluida" %}selected{% endif %}>
+                Concluídas
+            </option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-dark w-100">
+            Filtrar
+        </button>
+    </div>
+
+</form>
+
+<div class="row g-3">
+
+{% for tarefa in tarefas %}
+
+<div class="col-md-6 col-lg-4">
+
+    <div class="card task-card h-100">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between">
+
+                <h5 class="fw-bold">
+                    {{ tarefa.titulo }}
+                </h5>
+
+                {% if tarefa.prioridade == "alta" %}
+                    <span class="badge bg-danger">Alta</span>
+                {% elif tarefa.prioridade == "media" %}
+                    <span class="badge bg-warning text-dark">Média</span>
+                {% else %}
+                    <span class="badge bg-success">Baixa</span>
+                {% endif %}
+
+            </div>
+
+            <p class="text-muted">
+                {{ tarefa.descricao or "Sem descrição." }}
+            </p>
+
+            {% if tarefa.status == "concluida" %}
+                <span class="badge bg-success">
+                    Concluída
+                </span>
+            {% else %}
+                <span class="badge bg-secondary">
+                    Pendente
+                </span>
+            {% endif %}
+
+        </div>
+
+        <div class="card-footer bg-white border-0">
+
+            <div class="d-flex gap-2">
+
+                {% if tarefa.status == "pendente" %}
+                    <a
+                        href="/concluir/{{ tarefa.id }}"
+                        class="btn btn-sm btn-success"
+                    >
+                        Concluir
+                    </a>
+                {% endif %}
+
+                <a
+                    href="/editar/{{ tarefa.id }}"
+                    class="btn btn-sm btn-outline-primary"
+                >
+                    Editar
+                </a>
+
+                <a
+                    href="/excluir/{{ tarefa.id }}"
+                    class="btn btn-sm btn-outline-danger"
+                    onclick="return confirm('Deseja realmente excluir esta tarefa?')"
+                >
+                    Excluir
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="text-center py-5">
+    <h4>Nenhuma tarefa encontrada</h4>
+    <p class="text-muted">
+        Crie sua primeira tarefa para começar.
+    </p>
+
+    <a href="/criar" class="btn btn-primary">
+        Criar tarefa
+    </a>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

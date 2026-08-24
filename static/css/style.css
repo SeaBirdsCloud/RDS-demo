@@ -1,0 +1,43 @@
+/* static/css/style.css */
+
+body {
+    background: #f5f7fb;
+}
+
+.dashboard-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card h2 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.task-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    transition: 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.btn {
+    border-radius: 10px;
+}

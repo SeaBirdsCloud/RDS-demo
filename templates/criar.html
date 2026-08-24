@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+
+        <div class="card task-card">
+
+            <div class="card-body p-4">
+
+                <div class="mb-4">
+                    <h2 class="fw-bold">Nova tarefa</h2>
+                    <p class="text-muted mb-0">
+                        Adicione uma nova tarefa à sua lista.
+                    </p>
+                </div>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Título
+                        </label>
+
+                        <input
+                            type="text"
+                            name="titulo"
+                            class="form-control"
+                            placeholder="Ex.: Estudar Python"
+                            maxlength="150"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Descrição
+                        </label>
+
+                        <textarea
+                            name="descricao"
+                            class="form-control"
+                            rows="5"
+                            placeholder="Descreva os detalhes da tarefa..."
+                        ></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            Prioridade
+                        </label>
+
+                        <select
+                            name="prioridade"
+                            class="form-select"
+                            required
+                        >
+                            <option value="baixa">
+                                Baixa
+                            </option>
+
+                            <option value="media" selected>
+                                Média
+                            </option>
+
+                            <option value="alta">
+                                Alta
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a
+                            href="{{ url_for('index') }}"
+                            class="btn btn-outline-secondary"
+                        >
+                            Cancelar
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary px-4"
+                        >
+                            Criar tarefa
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
