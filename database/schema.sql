@@ -1,4 +1,4 @@
-    CREATE DATABASE gerenciador_tarefas;
+    -- CREATE DATABASE gerenciador_tarefas;
 
     USE gerenciador_tarefas;
 
